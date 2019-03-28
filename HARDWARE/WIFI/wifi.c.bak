@@ -46,7 +46,6 @@ void TIM3_Int_Init(u16 arr,u16 psc)
 	TIM_TimeBaseInitStructure.TIM_ClockDivision=TIM_CKD_DIV1; 
 	
 	TIM_TimeBaseInit(TIM3,&TIM_TimeBaseInitStructure);
-	TIM_ARRPreloadConfig(TIM3, ENABLE);
 	TIM_Cmd(TIM3,DISABLE);
 	TIM_ITConfig(TIM3,TIM_IT_Update,ENABLE);
 	NVIC_InitStructure.NVIC_IRQChannel=TIM3_IRQn; 

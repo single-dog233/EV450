@@ -93,7 +93,7 @@ void ADS1256_GPIO_init(void);
 void ADS1256_Init(void);
 void ADS_Read(void);
 u8 SPI_SendByte(u8 byte);
-char  ADS1256ReadData(void);
+unsigned long  ADS1256ReadData(void);
 void ADS1256WREG(unsigned char regaddr,unsigned char databyte);
 void SPI1_SetSpeed(u8 SPI_BaudRatePrescaler);
 #endif

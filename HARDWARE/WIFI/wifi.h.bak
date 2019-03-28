@@ -28,7 +28,6 @@ typedef struct frame_send
 void wifi_init(void);
 void uart_send_message(u32 addr, int length);
 void uart_send_adc_message(void);
-void information_retrieval(void);
 #endif
 
 
