@@ -20,15 +20,15 @@ int main(void)
 
 	while(GPIO_ReadInputDataBit(GPIOE,GPIO_Pin_1));
 	
-//	for(int i = 1; i < 41; i++)
-//		chip_74hc573_send_data(i, 1);		
-//	for(int i = 1; i < 41; i++)	
-//		chip_74hc573_send_data(i, 0);
+	for(int i = 1; i < 41; i++)
+		chip_74hc573_send_data(i, 1);		
+	for(int i = 1; i < 41; i++)	
+		chip_74hc573_send_data(i, 0);
 	while(1)
 	{
 		voltage_get();
 		ADS_Read();
-		pwm_get();
+//		pwm_get();
 		uart_send_adc_message();		
 //		printf("33 = %d 34 = %d    ", frame_s->data[32], frame_s->data[33]);
 //		printf("37 = %d 38 = %d\r\n", frame_s->data[36], frame_s->data[37]);

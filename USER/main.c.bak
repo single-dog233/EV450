@@ -2,7 +2,7 @@
 extern char adc_stm32_value_get[80];
 extern int bak;
 extern frame_send * frame_s;
-int k = 1;
+int first_start = 1;
 int main(void)
 { 
 	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
@@ -30,20 +30,20 @@ int main(void)
 		ADS_Read();
 		pwm_get();
 		uart_send_adc_message();		
-		printf("33 = %d 34 = %d    ", frame_s->data[32], frame_s->data[33]);
-		printf("37 = %d 38 = %d\r\n", frame_s->data[36], frame_s->data[37]);
+//		printf("33 = %d 34 = %d    ", frame_s->data[32], frame_s->data[33]);
+//		printf("37 = %d 38 = %d\r\n", frame_s->data[36], frame_s->data[37]);
 		delay_ms(700);
 		if(GPIO_ReadInputDataBit(GPIOE,GPIO_Pin_1))
 		{
-			k = 1;
+			first_start = 1;
 			GPIO_WriteBit(GPIOE, GPIO_Pin_3, Bit_RESET);
 			GPIO_WriteBit(GPIOE,GPIO_Pin_2, Bit_SET);
 		}
 		else
 		{
-			if(k == 1)
+			if(first_start == 1)
 			{
-				k = 0;
+				first_start = 0;
 				information_retrieval();
 			}
 			GPIO_WriteBit(GPIOE,GPIO_Pin_3, Bit_SET);

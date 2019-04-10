@@ -117,4 +117,9 @@ void voltage_get(void)
 	{	
 		(frame_s->data)[76 - adc_channel*4] = (char)((double)Get_Adc(chanenl[adc_channel])/4096.0*150);		
 	}
+	
+//	frame_s->data[30] = (char)((double)Get_Adc(ADC_Channel_8)/4096.0*150);	
+//	frame_s->data[31] = (char)((double)Get_Adc(ADC_Channel_10)/4096.0*150);	
+//	frame_s->data[49] = (char)((double)Get_Adc(ADC_Channel_11)/4096.0*150);	
+//	frame_s->data[48] = (char)((double)Get_Adc(ADC_Channel_9)/4096.0*150);	
 }
