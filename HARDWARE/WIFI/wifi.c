@@ -3,7 +3,7 @@
 char RecBuff[sizeof(data_frame)*2-1];
 char frame_send_char[sizeof(frame_send)];
 char ok_ack[] = {0x76, 0xf5, 0x01, 0x01, 0x01, 0x59, 0xff, 0xcc};
-char get_value[] = {0x76, 0xf5, 0x03, 0x01, 0x01, 0xAA, 0xff, 0xcc};
+char get_value[] = {0x76, 0xf5, 0xff, 0x03, 0x01, 0xAA, 0xff, 0xcc};
 extern int switch_vlaue;
 data_frame * point = (data_frame * )RecBuff;
 frame_send * frame_s = (frame_send *)frame_send_char;
@@ -118,13 +118,13 @@ void wifi_init(void)
 	USART_DMACmd(USART6,USART_DMAReq_Rx,ENABLE);	
 	MYDMA_Enable(DMA2_Stream2,sizeof(RecBuff));
 	MYDMA_Enable(DMA2_Stream6,sizeof(frame_send_char));
-	TIM3_Int_Init(500-1,8400-1);	
+	TIM3_Int_Init(400-1,8400-1);	
 }
 
 
 void DMA2_Stream6_IRQHandler(void)
 {
-		if(DMA_GetITStatus(DMA2_Stream6, DMA_IT_TCIF6))
+		if(DMA_GetITStatus(DMA2_Stream6, DMA_IT_TCIF6 ))
     {
         DMA_ClearITPendingBit(DMA2_Stream6, DMA_IT_TCIF6); 
     }

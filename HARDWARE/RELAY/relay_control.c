@@ -5,7 +5,7 @@ data_io data_io_infos[data_io_num];
 chip_info lock_io_infos[CHIP_74HC573_NUM];
 relay_info relay[RELAY_NUM];
 
-
+unsigned char saveBak[80];
 
 static void data_init(void)
 {
@@ -120,11 +120,15 @@ void chip_74hc573_send_data(int chip_num, int data)
 		{
 			GPIO_Write(data_io_info->port,  last_data);
 			GPIO_SetBits(data_io_info->port, data_io_info->pin);
+			saveBak[chip_num] = 1;
+			printf("77");
 		}
 		else
 		{
 			GPIO_Write(data_io_info->port,  last_data);
 			GPIO_ResetBits(data_io_info->port, data_io_info->pin);
+			saveBak[chip_num] = 0;
+			printf("88");
 		}
 			
 		chip_74hc573_data_refresh(relay[chip_num].chip_info_data);

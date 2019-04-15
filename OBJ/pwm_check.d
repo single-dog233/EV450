@@ -49,3 +49,4 @@
 ..\obj\pwm_check.o: ..\HARDWARE\74HC4051\74hc4051.h
 ..\obj\pwm_check.o: ..\HARDWARE\ADS1256\ads1256.h
 ..\obj\pwm_check.o: ..\HARDWARE\PWM\PWM_CHECK.h
+..\obj\pwm_check.o: ..\HARDWARE\PVD\PVD.h

@@ -10,6 +10,12 @@
 #define adc5 ADC_Channel_5
 #define adc7 ADC_Channel_6
 #define adc6 ADC_Channel_7
+
+#define adc8 ADC_Channel_14//ADC_Channel_15
+#define adc9 ADC_Channel_12//
+//#define adc6 ADC_Channel_14
+//#define adc6 ADC_Channel_15
+
 void voltage_get(void);
 void chip_74hc4051_adc_init(void);
 #endif

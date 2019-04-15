@@ -26,6 +26,7 @@ typedef struct relay_info{
 	data_io * data_io_info;
 }relay_info;
 
+extern unsigned char saveBak[80];
 
 void chip_74hc573_init(void);
 void chip_74hc573_send_data(int chip_num, int data);

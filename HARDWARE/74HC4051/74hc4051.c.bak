@@ -6,6 +6,8 @@ void  Adc_Init(void)
 	ADC_InitTypeDef       ADC_InitStructure;
 	
   RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
+	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOB, ENABLE);
+	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOC, ENABLE);
   RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC1, ENABLE); 
 
   //先初始化ADC1通道5 IO口
@@ -13,7 +15,21 @@ void  Adc_Init(void)
 									|GPIO_Pin_3|GPIO_Pin_4|GPIO_Pin_5|GPIO_Pin_6|GPIO_Pin_7;
   GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AN;//模拟输入
   GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL ;//不带上下拉
-  GPIO_Init(GPIOA, &GPIO_InitStructure);//初始化  
+  GPIO_Init(GPIOA, &GPIO_InitStructure);//初始化 
+	
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0|GPIO_Pin_1;
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AN;//模拟输入
+  GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL ;//不带上下拉
+  GPIO_Init(GPIOB, &GPIO_InitStructure);//初始化 
+
+	
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0|GPIO_Pin_1|GPIO_Pin_2|GPIO_Pin_3|GPIO_Pin_4|GPIO_Pin_5;
+	GPIO_Init(GPIOC, &GPIO_InitStructure);
+	
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_8|GPIO_Pin_10|GPIO_Pin_11|GPIO_Pin_12;
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN;	
+	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
+	GPIO_Init(GPIOA, &GPIO_InitStructure);  // pin error maybe fix
  
 	RCC_APB2PeriphResetCmd(RCC_APB2Periph_ADC1,ENABLE);	  //ADC1复位
 	RCC_APB2PeriphResetCmd(RCC_APB2Periph_ADC1,DISABLE);	//复位结束	 
@@ -46,7 +62,7 @@ u16 Get_Adc(u8 ch)
 	ADC_Cmd(ADC1, DISABLE);
 	return ret;
 }
-char chanenl[8] = {adc0, adc1, adc2, adc3, adc4, adc5, adc6, adc7};
+char chanenl[10] = {adc0, adc1, adc2, adc3, adc4, adc5, adc6, adc7, adc8, adc9};
 
 void chip_74hc4051_adc_init(void)
 {
@@ -74,52 +90,55 @@ extern frame_send * frame_s;
 void voltage_get(void)
 {
 	change_channel(0);
-	for(int adc_channel = 0; adc_channel<8; ++adc_channel)//读8次数据 adc0-adc7
+	for(int adc_channel = 0; adc_channel<10; ++adc_channel)//读8次数据 adc0-adc7
 	{	
 		(frame_s->data)[0 + adc_channel*4] = (char)((double)Get_Adc(chanenl[adc_channel])/4096.0*150);
 	}
+	
+	change_channel(1);
+	for(int adc_channel = 0; adc_channel<10; adc_channel++)//读8次数据 adc0-adc7
+	{	
+		(frame_s->data)[41 + adc_channel*4] = (char)((double)Get_Adc(chanenl[adc_channel])/4096.0*150);		
+	}
 
 	change_channel(2);
-	for(int adc_channel = 0; adc_channel<8; adc_channel++)//读8次数据 adc0-adc7
+	for(int adc_channel = 0; adc_channel<10; adc_channel++)//读8次数据 adc0-adc7
 	{	
 		(frame_s->data)[1 + adc_channel*4] = (char)((double)Get_Adc(chanenl[adc_channel])/4096.0*150);		
 	}	
+	
+	
+	change_channel(3);
+	for(int adc_channel = 0; adc_channel<10; adc_channel++)//读8次数据 adc0-adc7
+	{	
+		(frame_s->data)[40 + adc_channel*4] = (char)((double)Get_Adc(chanenl[adc_channel])/4096.0*150);		
+	}
+	
+	change_channel(4);
+	for(int adc_channel = 0; adc_channel<10; adc_channel++)//读8次数据 adc0-adc7
+	{	
+		(frame_s->data)[42 + adc_channel*4] = (char)((double)Get_Adc(chanenl[adc_channel])/4096.0*150);		
+	}
 
 	change_channel(5);
-	for(int adc_channel = 0; adc_channel<8; adc_channel++)//读8次数据 adc0-adc7
+	for(int adc_channel = 0; adc_channel<10; adc_channel++)//读8次数据 adc0-adc7
 	{	
 		(frame_s->data)[3 + adc_channel*4] = (char)((double)Get_Adc(chanenl[adc_channel])/4096.0*150);		
 	}
 	change_channel(6);
-	for(int adc_channel = 0; adc_channel<8; adc_channel++)//读8次数据 adc0-adc7
+	for(int adc_channel = 0; adc_channel<10; adc_channel++)//读8次数据 adc0-adc7
 	{	
 		(frame_s->data)[2 + adc_channel*4] = (char)((double)Get_Adc(chanenl[adc_channel])/4096.0*150);		
 	}
 	
-	/********************/
-	change_channel(1);
-	for(int adc_channel = 0; adc_channel<8; adc_channel++)//读8次数据 adc0-adc7
-	{	
-		(frame_s->data)[78 - adc_channel*4] = (char)((double)Get_Adc(chanenl[adc_channel])/4096.0*150);		
-	}
-	change_channel(3);
-	for(int adc_channel = 0; adc_channel<8; adc_channel++)//读8次数据 adc0-adc7
-	{	
-		(frame_s->data)[79 - adc_channel*4] = (char)((double)Get_Adc(chanenl[adc_channel])/4096.0*150);		
-	}
-	change_channel(4);
-	for(int adc_channel = 0; adc_channel<8; adc_channel++)//读8次数据 adc0-adc7
-	{	
-		(frame_s->data)[77 - adc_channel*4] = (char)((double)Get_Adc(chanenl[adc_channel])/4096.0*150);		
-	}
 	change_channel(7);
-	for(int adc_channel = 0; adc_channel<8; adc_channel++)//读8次数据 adc0-adc7
+	for(int adc_channel = 0; adc_channel<10; adc_channel++)//读8次数据 adc0-adc7
 	{	
-		(frame_s->data)[76 - adc_channel*4] = (char)((double)Get_Adc(chanenl[adc_channel])/4096.0*150);		
+		(frame_s->data)[43 + adc_channel*4] = (char)((double)Get_Adc(chanenl[adc_channel])/4096.0*150);		
 	}
 	
 	frame_s->data[30] = (char)((double)Get_Adc(ADC_Channel_8)/4096.0*150);	
 	frame_s->data[31] = (char)((double)Get_Adc(ADC_Channel_10)/4096.0*150);	
-	frame_s->data[49] = (char)((double)Get_Adc(ADC_Channel_11)/4096.0*150);	
-	frame_s->data[48] = (char)((double)Get_Adc(ADC_Channel_9)/4096.0*150);	
+	frame_s->data[70] = (char)((double)Get_Adc(ADC_Channel_9)/4096.0*150);	
+	frame_s->data[71] = (char)((double)Get_Adc(ADC_Channel_11)/4096.0*150);	
 }

@@ -337,7 +337,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F40_41xxx,USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\CORE;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart;..\USER;..\HARDWARE\LED;..\HARDWARE\LCD;..\HARDWARE\KEY;..\HARDWARE\DMA;..\FWLIB\inc;..\HARDWARE\RELAY;..\HARDWARE\WIFI;..\HARDWARE\74HC4051;..\HARDWARE\ADS1220;..\SYSTEM\SPI;..\HARDWARE\ADS1256;..\HARDWARE\PWM</IncludePath>
+              <IncludePath>..\CORE;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart;..\USER;..\HARDWARE\LED;..\HARDWARE\LCD;..\HARDWARE\KEY;..\HARDWARE\DMA;..\FWLIB\inc;..\HARDWARE\RELAY;..\HARDWARE\WIFI;..\HARDWARE\74HC4051;..\HARDWARE\ADS1220;..\SYSTEM\SPI;..\HARDWARE\ADS1256;..\HARDWARE\PWM;..\HARDWARE\24CXX;..\HARDWARE\IIC;..\HARDWARE\PVD</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -441,6 +441,21 @@
               <FileType>1</FileType>
               <FilePath>..\HARDWARE\PWM\PWM_CHECK.c</FilePath>
             </File>
+            <File>
+              <FileName>pvd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\PVD\pvd.c</FilePath>
+            </File>
+            <File>
+              <FileName>myiic.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\IIC\myiic.c</FilePath>
+            </File>
+            <File>
+              <FileName>24cxx.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\24CXX\24cxx.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -525,6 +540,16 @@
               <FileName>stm32f4xx_tim.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\FWLIB\src\stm32f4xx_tim.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_exti.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\FWLIB\src\stm32f4xx_exti.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_pwr.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\FWLIB\src\stm32f4xx_pwr.c</FilePath>
             </File>
           </Files>
         </Group>

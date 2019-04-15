@@ -48,3 +48,4 @@
 ..\obj\sys.o: ..\HARDWARE\74HC4051\74hc4051.h
 ..\obj\sys.o: ..\HARDWARE\ADS1256\ads1256.h
 ..\obj\sys.o: ..\HARDWARE\PWM\PWM_CHECK.h
+..\obj\sys.o: ..\HARDWARE\PVD\PVD.h

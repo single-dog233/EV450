@@ -48,3 +48,4 @@
 ..\obj\relay_control.o: ..\HARDWARE\74HC4051\74hc4051.h
 ..\obj\relay_control.o: ..\HARDWARE\ADS1256\ads1256.h
 ..\obj\relay_control.o: ..\HARDWARE\PWM\PWM_CHECK.h
+..\obj\relay_control.o: ..\HARDWARE\PVD\PVD.h

@@ -48,3 +48,4 @@
 ..\obj\wifi.o: ..\HARDWARE\74HC4051\74hc4051.h
 ..\obj\wifi.o: ..\HARDWARE\ADS1256\ads1256.h
 ..\obj\wifi.o: ..\HARDWARE\PWM\PWM_CHECK.h
+..\obj\wifi.o: ..\HARDWARE\PVD\PVD.h

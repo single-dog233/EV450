@@ -48,3 +48,4 @@
 ..\obj\delay.o: ..\HARDWARE\74HC4051\74hc4051.h
 ..\obj\delay.o: ..\HARDWARE\ADS1256\ads1256.h
 ..\obj\delay.o: ..\HARDWARE\PWM\PWM_CHECK.h
+..\obj\delay.o: ..\HARDWARE\PVD\PVD.h
